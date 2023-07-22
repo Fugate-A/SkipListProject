@@ -1,4 +1,3 @@
-
 import java.lang.management.ManagementFactory;
 import java.lang.management.ThreadMXBean;
 
@@ -10,18 +9,26 @@ import java.util.List;
 import java.util.Random;
 import java.util.TreeSet;
 
-public class SkipListTestHarness {
-	private static class CPUTimer {
-		public static <T> long timeFor(Callable<T> task) {
-			try {
+public class SkipListTestHarness
+{
+	private static class CPUTimer
+	{
+		public static <T> long timeFor(Callable<T> task)
+		{
+			try
+			{
 				long start = System.currentTimeMillis();
 				T t = task.call();
 				long end = System.currentTimeMillis();
 				return end - start;
-			} catch (Exception e) {
+			}
+			
+			catch (Exception e)
+			{
 				System.out.println(e.toString());
 				e.printStackTrace();
 			}
+			
 			return 0;
 		}
 	}
@@ -136,7 +143,7 @@ public class SkipListTestHarness {
 		}
 
 		System.gc();
-
+ 
 		
 		if(true) {
 			SkipListSet<T> skipListSet = new SkipListSet<T>();
