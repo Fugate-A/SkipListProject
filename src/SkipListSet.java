@@ -1,10 +1,57 @@
+
 import java.util.*;
 
 public class SkipListSet<T extends Comparable<T>> implements SortedSet<T>
 {
-    private static final int MAX_HEIGHT = 32;
+    int MAX_HEIGHT = 25;
     private SkipListNode<T> head;
-    private int size;
+    int size;
+    
+    private class SkipListNode<E extends Comparable<E>>
+    {
+        private E value;
+        private SkipListNode<E>[] next;
+
+        public SkipListNode(E value, int height)
+        {
+            this.value = value;
+            next = new SkipListNode[height];
+        }
+    }
+
+    private class SkipListSetIterator implements Iterator<T>
+    {
+        private SkipListNode<T> currentNode;
+
+        public SkipListSetIterator()
+        {
+            currentNode = head.next[0];
+        }
+
+        @Override
+        public boolean hasNext() {
+            return currentNode != null;
+        }
+
+        @Override
+        public T next()
+        {
+            if (!hasNext())
+            {
+                throw new NoSuchElementException();
+            }
+            
+            T value = currentNode.value;
+            currentNode = currentNode.next[0];
+            return value;
+        }
+
+        @Override
+        public void remove()
+        {
+            throw new UnsupportedOperationException();
+        }
+    }
 
     public SkipListSet()
     {
@@ -183,6 +230,7 @@ public class SkipListSet<T extends Comparable<T>> implements SortedSet<T>
         }
         
         int height = randomHeight();
+        
         if (height > MAX_HEIGHT)
         {
             height = MAX_HEIGHT;
@@ -197,6 +245,7 @@ public class SkipListSet<T extends Comparable<T>> implements SortedSet<T>
         }
         
         size++;
+        
         return true;
     }
 
@@ -327,55 +376,16 @@ public class SkipListSet<T extends Comparable<T>> implements SortedSet<T>
         return o instanceof Comparable;
     }
 
-    private class SkipListNode<E extends Comparable<E>>
-    {
-        private E value;
-        private SkipListNode<E>[] next;
-
-        public SkipListNode(E value, int height)
-        {
-            this.value = value;
-            next = new SkipListNode[height];
-        }
-    }
-
-    private class SkipListSetIterator implements Iterator<T>
-    {
-        private SkipListNode<T> currentNode;
-
-        public SkipListSetIterator()
-        {
-            currentNode = head.next[0];
-        }
-
-        @Override
-        public boolean hasNext() {
-            return currentNode != null;
-        }
-
-        @Override
-        public T next()
-        {
-            if (!hasNext())
-            {
-                throw new NoSuchElementException();
-            }
-            
-            T value = currentNode.value;
-            currentNode = currentNode.next[0];
-            return value;
-        }
-
-        @Override
-        public void remove()
-        {
-            throw new UnsupportedOperationException();
-        }
-    }
-
 	public void reBalance()
 	{
-		// TODO Auto-generated method stub
-		
+		SkipListSet<T> newSkipList = new SkipListSet<>();
+
+	    for (T element : this)
+	    {
+	        newSkipList.add(element);
+	    }
+
+	    this.head = newSkipList.head;
+	    this.size = newSkipList.size;
 	}
 }
