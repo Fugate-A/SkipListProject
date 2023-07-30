@@ -3,7 +3,7 @@ import java.util.*;
 
 public class SkipListSet<T extends Comparable<T>> implements SortedSet<T>
 {
-    int MAX_HEIGHT = 25;
+    int MAX_HEIGHT = 8;
     private SkipListNode<T> head;
     int size;
     
@@ -236,6 +236,8 @@ public class SkipListSet<T extends Comparable<T>> implements SortedSet<T>
             height = MAX_HEIGHT;
         }
         
+        
+        
         SkipListNode<T> newNode = new SkipListNode<>(t, height);
        
         for (int i = 0; i < height; i++)
@@ -245,6 +247,13 @@ public class SkipListSet<T extends Comparable<T>> implements SortedSet<T>
         }
         
         size++;
+        
+        MAX_HEIGHT = (int) Math.ceil(Math.log(size + 1) / Math.log(2)); // Update MAX_HEIGHT
+        
+        SkipListNode<T>[] newHeadNext = Arrays.copyOf(head.next, MAX_HEIGHT);
+        head.next = newHeadNext;
+        
+        //System.out.println("\n\n" + "There are " + size + " elements in the skiplist, and the current height is " + MAX_HEIGHT + "\n\n");
         
         return true;
     }
