@@ -397,4 +397,42 @@ public class SkipListSet<T extends Comparable<T>> implements SortedSet<T>
 	    this.head = newSkipList.head;
 	    this.size = newSkipList.size;
 	}
+	
+	@Override
+	public boolean equals(Object obj)
+	{
+	    if (this == obj)
+	    {
+	        return true;
+	    }
+
+	    if (obj == null || !(obj instanceof SkipListSet))
+	    {
+	        return false;
+	    }
+
+	    SkipListSet<?> other = (SkipListSet<?>) obj;
+
+	    if (size() != other.size())
+	    {
+	        return false;
+	    }
+
+	    Iterator<T> thisIterator = iterator();
+	    Iterator<?> otherIterator = other.iterator();
+
+	    while (thisIterator.hasNext())
+	    {
+	        T thisElement = thisIterator.next();
+	        Object otherElement = otherIterator.next();
+
+	        if (!Objects.equals(thisElement, otherElement))
+	        {
+	            return false;
+	        }
+	    }
+
+	    return true;
+	}
+
 }
