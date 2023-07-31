@@ -435,4 +435,17 @@ public class SkipListSet<T extends Comparable<T>> implements SortedSet<T>
 	    return true;
 	}
 
+	@Override
+	public int hashCode()
+	{
+	    int hashCode = 1;
+
+	    for (T element : this)
+	    {
+	        hashCode = 31 * hashCode + Objects.hashCode(element);
+	    }
+
+	    return hashCode;
+	}
+
 }
