@@ -15,7 +15,7 @@ public class SkipListSet<T extends Comparable<T>> implements SortedSet<T>
         public SkipListNode(E value, int height)
         {
             this.value = value;
-            next = new SkipListNode[height];
+            next = (SkipListSet<T>.SkipListNode<E>[]) new SkipListNode[height];
         }
     }
 
@@ -133,7 +133,8 @@ public class SkipListSet<T extends Comparable<T>> implements SortedSet<T>
         return size == 0;
     }
 
-    @Override
+    @SuppressWarnings("unchecked")
+	@Override
     public boolean contains(Object o)
     {
         if (o == null || !isValidType(o))
@@ -176,7 +177,8 @@ public class SkipListSet<T extends Comparable<T>> implements SortedSet<T>
         return array;
     }
 
-    @Override
+    @SuppressWarnings("unchecked")
+	@Override
     public <T1> T1[] toArray(T1[] a)
     {
         if (a.length < size)
@@ -209,7 +211,7 @@ public class SkipListSet<T extends Comparable<T>> implements SortedSet<T>
             throw new NullPointerException();
         }
         
-        SkipListNode<T>[] update = new SkipListNode[MAX_HEIGHT];
+        SkipListNode<T>[] update = (SkipListSet<T>.SkipListNode<T>[]) new SkipListNode[MAX_HEIGHT];
         SkipListNode<T> node = head;
         
         for (int i = MAX_HEIGHT - 1; i >= 0; i--)
@@ -258,7 +260,8 @@ public class SkipListSet<T extends Comparable<T>> implements SortedSet<T>
         return true;
     }
 
-    @Override
+    @SuppressWarnings("unchecked")
+	@Override
     public boolean remove(Object o)
     {
         if (o == null || !isValidType(o))
