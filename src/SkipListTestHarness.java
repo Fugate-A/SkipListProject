@@ -235,10 +235,10 @@ public class SkipListTestHarness
 	public static void main(String args[]) {
 		SkipListTestHarness.executeStringCase(100000, 10000, 1000, false, true);
 		System.gc();
-		/*SkipListTestHarness.executeStringCase(1000000, 10000, 1000, false, true);
+		SkipListTestHarness.executeStringCase(1000000, 10000, 1000, false, true);
 		System.gc();
 		
-		/*SkipListTestHarness.executeStringCase(1000000, 100000, 1000, false, true);
+		SkipListTestHarness.executeStringCase(1000000, 100000, 1000, false, true);
 		System.gc();
 		SkipListTestHarness.executeDoubleCase(100000, 10000, true, true);
 		System.gc();
@@ -257,6 +257,11 @@ public class SkipListTestHarness
 		System.gc();
 		SkipListTestHarness.executeIntCase(10000000, 10000000, false, true);	
 		System.gc();
-		*/
+		
+		System.out.println();
+		System.out.println();
+		System.out.println("Fin *but fancy*");
+		System.out.println();
+		
 	}
 }
