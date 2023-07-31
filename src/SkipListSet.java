@@ -12,10 +12,11 @@ public class SkipListSet<T extends Comparable<T>> implements SortedSet<T>
         private E value;
         private SkipListNode<E>[] next;
 
-        public SkipListNode(E value, int height)
+        @SuppressWarnings("unchecked")
+		public SkipListNode(E value, int height)
         {
             this.value = value;
-            next = (SkipListSet<T>.SkipListNode<E>[]) new SkipListNode[height];
+            next = new SkipListNode[height];
         }
     }
 
@@ -211,7 +212,8 @@ public class SkipListSet<T extends Comparable<T>> implements SortedSet<T>
             throw new NullPointerException();
         }
         
-        SkipListNode<T>[] update = (SkipListSet<T>.SkipListNode<T>[]) new SkipListNode[MAX_HEIGHT];
+        @SuppressWarnings("unchecked")
+		SkipListNode<T>[] update = new SkipListNode[MAX_HEIGHT];
         SkipListNode<T> node = head;
         
         for (int i = MAX_HEIGHT - 1; i >= 0; i--)
