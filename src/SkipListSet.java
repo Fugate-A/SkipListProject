@@ -158,7 +158,7 @@ public class SkipListSet<T extends Comparable<T>> implements SortedSet<T> {
 	}
 
 	/*
-	 * 
+	 * Takes no input. Acts as getter for the size variable and returns that.
 	 */
 	@Override
 	public int size() {
@@ -166,7 +166,8 @@ public class SkipListSet<T extends Comparable<T>> implements SortedSet<T> {
 	}
 
 	/*
-	 * 
+	 * Takes no input. Checks if the size is 0. 
+	 * If it is, it returns boolean true, otherwise false. 
 	 */
 	@Override
 	public boolean isEmpty() {
@@ -174,7 +175,10 @@ public class SkipListSet<T extends Comparable<T>> implements SortedSet<T> {
 	}
 
 	/*
-	 * 
+	 * Takes in an object. Checks that the object is real and compatible 
+	 * using the isValidType method. If it is ok, it continues or otherwise returns false.
+	 * Checks if that object is found in the skiplist by using compareTo and by iterating over the list.
+	 * If it found the item, it returns true, otherwise returns false.  
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
@@ -196,7 +200,7 @@ public class SkipListSet<T extends Comparable<T>> implements SortedSet<T> {
 	}
 
 	/*
-	 * 
+	 * Takes no input. Returns the custom SkipListSetIterator.
 	 */
 	@Override
 	public Iterator<T> iterator() {
@@ -204,7 +208,8 @@ public class SkipListSet<T extends Comparable<T>> implements SortedSet<T> {
 	}
 
 	/*
-	 * 
+	 * Takes no input. Creates an array and adds the items from the skiplist
+	 * into the array. Returns the array. 
 	 */
 	@Override
 	public Object[] toArray() {
@@ -221,7 +226,10 @@ public class SkipListSet<T extends Comparable<T>> implements SortedSet<T> {
 	}
 
 	/*
+	 * Takes no input. Creates an array and adds the items from the skiplist
+	 * into the array. Returns the array. 
 	 * 
+	 * Old java method. 
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
@@ -246,7 +254,10 @@ public class SkipListSet<T extends Comparable<T>> implements SortedSet<T> {
 	}
 
 	/*
-	 * 
+	 * Takes a generic item input. Checks whether the type is compatible or not
+	 * and throws an exception if not. Otherwise, it finds the correct spot to add 
+	 * uses the update array to add the item and adjust the pointers around it. 
+	 * Adjusts height with binary log formula and returns true once complete.
 	 */
 	@Override
 	public boolean add(T t) {
@@ -299,7 +310,11 @@ public class SkipListSet<T extends Comparable<T>> implements SortedSet<T> {
 	}
 
 	/*
-	 * 
+	 * Takes in an object and attempts to remove it. Checks that the
+	 * input is not null and a compatible type. If not, returns false.
+	 * Otherwise, is searches for the item, if its not found it returns false, 
+	 * and if it is found, removes the item, adjusts the size variable,
+	 * then updates the pointers around, and returns true.
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
