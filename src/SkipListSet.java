@@ -353,7 +353,10 @@ public class SkipListSet<T extends Comparable<T>> implements SortedSet<T> {
 	}
 
 	/*
-	 * 
+	 * Takes in a collection. Checks if the skiplist contains every item 
+	 * passed in through the collection. If there are any missing, 
+	 * it returns false, otherwise it iterates over the collection and 
+	 * returns true.
 	 */
 	@Override
 	public boolean containsAll(Collection<?> c) {
@@ -367,7 +370,9 @@ public class SkipListSet<T extends Comparable<T>> implements SortedSet<T> {
 	}
 
 	/*
-	 * 
+	 * Takes in a collection of items. Adds every item in the collection to the 
+	 * skiplist and returns true when that is done. If there is an error, lets 
+	 * say an incompatible type is passed, then the method will return false.
 	 */
 	@Override
 	public boolean addAll(Collection<? extends T> c) {
@@ -382,7 +387,9 @@ public class SkipListSet<T extends Comparable<T>> implements SortedSet<T> {
 	}
 
 	/*
-	 * 
+	 * Takes in a collection of items. Retains all the items that are 
+	 * common between the skiplist and the collection while removing everything else.
+	 * Returns true when that is done or false if there is an error/exception. 
 	 */
 	@Override
 	public boolean retainAll(Collection<?> c) {
@@ -399,7 +406,9 @@ public class SkipListSet<T extends Comparable<T>> implements SortedSet<T> {
 	}
 
 	/*
-	 * 
+	 * Takes in a collection of items. Removes every item in the collection
+	 * from the skiplist. When removed, the method returns true, 
+	 * otherwise returns false.
 	 */
 	@Override
 	public boolean removeAll(Collection<?> c) {
@@ -414,7 +423,9 @@ public class SkipListSet<T extends Comparable<T>> implements SortedSet<T> {
 	}
 
 	/*
-	 * 
+	 * Takes no input. Empties the skiplist by
+	 * replacing it with a new, blank, skiplist.
+	 * Returns nothing.
 	 */
 	@Override
 	public void clear() {
@@ -423,7 +434,10 @@ public class SkipListSet<T extends Comparable<T>> implements SortedSet<T> {
 	}
 
 	/*
-	 * 
+	 * Takes no input. Generates a random height. Minimum height of 1
+	 * for the base level, otherwise uses a coin flip to grow the 
+	 * height randomly. 
+	 * Max height is decided in the add and rebalance binary log formula.
 	 */
 	private int randomHeight() {
 		int height = 1;
@@ -436,14 +450,19 @@ public class SkipListSet<T extends Comparable<T>> implements SortedSet<T> {
 	}
 
 	/*
-	 * 
+	 * Takes in an object. 
+	 * Checks if it is a comparable type.
+	 * Returns true if so, false otherwise.
 	 */
 	private boolean isValidType(Object o) {
 		return o instanceof Comparable;
 	}
 
 	/*
-	 * 
+	 * Takes no input. Makes a new temporary skiplist
+	 * and copies the old items values into it. By doing 
+	 * so, the add into the new skiplist will pick a new
+	 * height for the item. Does not return anything. 
 	 */
 	public void reBalance() {
 		SkipListSet<T> newSkipList = new SkipListSet<>();
@@ -458,7 +477,11 @@ public class SkipListSet<T extends Comparable<T>> implements SortedSet<T> {
 	}
 
 	/*
-	 * 
+	 * Takes in an object. Check if the object is the same
+	 * type as the skiplist and if not, returns false. 
+	 * If they are the same type, it iterates over the 2 lists 
+	 * and returns true if they contain the same items or false 
+	 * if there is something different. 
 	 */
 	@Override
 	public boolean equals(Object obj) {
@@ -492,7 +515,9 @@ public class SkipListSet<T extends Comparable<T>> implements SortedSet<T> {
 	}
 
 	/*
-	 * 
+	 * Takes no input. Generates a hashcode using prime number 31
+	 * to ensure there are as little duplicates as possible. 
+	 * Returns the generated hashcode. 
 	 */
 	@Override
 	public int hashCode() {
